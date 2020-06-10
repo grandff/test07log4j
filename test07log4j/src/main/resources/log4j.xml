@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />		
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="{%d{yyyy-MM-dd HH:mm:ss.SSS}} [%-5p] (%c.%M(): %L) - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- 로그 파일 저장 -->
+	<appender name="testFileLog" class="org.apache.log4j.DailyRollingFileAppender">		
+		<param name="File" value="C:\\Users\\User\\git\\test07log4j\\test07log4j\\src\\main\\webapp\\resources\\testlog.log"/>
+		<param name="Append" value="true"/>
+		<param name="DatePattern" value=".yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="{%d{yyyy-MM-dd HH:mm:ss.SSS}} [%-5p] (%c.%M(): %L) - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- 
+		%p : log level 5
+		%-5p:	:	:전까지 5글자 공간 확보, -가 붙으면 좌측 정렬
+		%c	: 카테고리 정보, 패키지 경로를 포함한 클래스 정보
+		%m%n	: 메시지 출력 후 개행 
+		%M	: 메소드 명
+		%d{yyyy-MM-dd HH:mm:ss.SSS} 로그 찍히는 시간
+		%L : 로그 라인 번호
+	 -->
+	
+	<!-- Application Loggers -->
+	<logger name="test.com.log4j">
+		<level value="info" />
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="console" />
+		<appender-ref ref="testFileLog" />
+	</root>
+	
+</log4j:configuration>
